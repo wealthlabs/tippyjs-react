@@ -19,6 +19,7 @@ export default function TippyGenerator(tippy) {
     reference,
     disabled = false,
     ignoreAttributes = true,
+    innerRefName = 'ref',
     // Filter React development reserved props
     // added by babel-preset-react dev plugins:
     // transform-react-jsx-self and transform-react-jsx-source
@@ -212,7 +213,7 @@ export default function TippyGenerator(tippy) {
       <>
         {children
           ? cloneElement(children, {
-              ref(node) {
+              [innerRefName]: function(node) {
                 mutableBox.ref = node;
                 preserveRef(children.ref, node);
               },
